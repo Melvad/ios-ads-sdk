@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "sourceRevision": "7b09c264c58b6497334289df43082b35dc74b2e6",
+  "distribution": "xcframework",
+  "assets": {
+    "MelvadAdsCore.xcframework.zip": "0cb9df1deae68694430149151b7db032415047b5422242781877042d60a3efc0",
+    "MelvadAdsRuntime.xcframework.zip": "2ba4098c1f010197f6714cde5e386a3151fa00f024a6e76e8d2ef8370fa87b1a",
+    "PrebidMobile.xcframework.zip": "21c8206d8438e2b672358b5d55cb95d75516b9a08ed85874ef65a0fea5bbec5f",
+    "OMSDK_Prebidorg.xcframework.zip": "252fa4d97e2ac57355333ca00e19778df55f8a0fd6ae77b6403780cb77fd0dd9",
+    "MelvadAdsSDK-1.0.0.zip": "b7ba596a5839c5ab749e01cd46ac8414a354c6bad2bf38be26a0fb45d129cf59"
+  }
+}
