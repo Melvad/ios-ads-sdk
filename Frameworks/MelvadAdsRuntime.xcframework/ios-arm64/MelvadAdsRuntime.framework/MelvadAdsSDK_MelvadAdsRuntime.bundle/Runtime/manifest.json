@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "files": {
+    "host.html": "e9e52c41e59c21d2f00b83a25ab1134629b056897f43661ec241b0c3738ebf1b",
+    "show-host.html": "ce0ffcedb69a030e0d3e08edab18463a58b02964875b4ea3e3483600cd37ad24",
+    "bridge.js": "8c456e44e4afa23e8066adfa667fe65900c76d2b9dc75176df318895d770dfa0",
+    "show-bridge.js": "cb2f0071f2c94bb42da31c9238bdafb790b6c7b53afb3902e032984f52b32d2b",
+    "player.js": "52f118c02ecee80b0d62d5d48cf2da83c76421b0cca87e39e6c9281b8f3e204e",
+    "show-sdk.js": "30236797e2821d32de2bcc91f57dd5a9b8ce550497f36642ff4686a7dfe60d38",
+    "safeframe/html/r.html": "2514abbb6fce7388fc814db27e4439f8cefbd49a40a35b370d340eb04b244767",
+    "safeframe/js/lib/base.js": "5f0a65aed592dc9e9561daabc84ac840f98be58f4d0e23c9eaa3f6ade395f1a7",
+    "safeframe/js/ext/ext.js": "04e4b43f113860bf0c5f06e684a4e00513aa4484dc295bba0c3186eec1c61150",
+    "safeframe/native-runtime.js": "94235489b094fd17693ce6c2e481ca69809a438380d62a33886a091d5c563401",
+    "safeframe/mraid.js": "aef9e6611eca46df9874ebab34e8a52a2e4d2d42ea294d0b12e8770d680dcb11",
+    "safeframe/LICENSE.txt": "98f13acb5563f5ae38d00f9742775b0ca2e6b2759e0d997dd02b5404cb884345",
+    "vendor/OMID-LICENSE": "fb830eb186829cddcbc3aa93cefd97c55f9de09d1c228d5e781c2a8b60d492f7",
+    "vendor/OMSDK-MANIFEST.json": "4f9df58163adcfde890c0ad54fcc3ff28ce925fa53bffe976d72c683774746bd",
+    "vendor/OMSDK-SERVICE-LICENSE": "fbb01ccec19549a7e04c35b17395fbdc3f6077f94a6097c90910d1f121b2bf4f",
+    "vendor/SHAKA-LICENSE": "20ce2eba547fd0a8c4023511c003eabe510982a335cccd4e270f1f55ffbd2250",
+    "vendor/omid-session-client-v1.js": "9e8d696cb5bfe3e43e044fb03ccdd4432f20e2935146b881fb233f6d84036473",
+    "vendor/omweb-v1.js": "cf17ced6550b8a23cc9621fc21b4a66da7521d70455d1a083b3de04e1528b69d",
+    "vendor/shaka-player.compiled.js": "b22dfdba631104c48a654cb623b08b0f79e2d52c83c0e9b4b7cff54730b55894",
+    "vendor/shaka-player.transmuxer-worker.js": "d57b08bbd94ca97a20c343967f3e331f60862ad263879e701bdf8d621f8897bf",
+    "THIRD_PARTY_NOTICES.txt": "1cef4418e08a5dc389f85afe54eb2a9aa7792cef1e4182e2a6d39930381755e4"
+  }
+}
