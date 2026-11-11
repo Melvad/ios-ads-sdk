@@ -1,12 +1,12 @@
 {
-  "version": "1.0.0",
-  "sourceRevision": "7b09c264c58b6497334289df43082b35dc74b2e6",
+  "version": "1.0.1",
+  "sourceRevision": "97a66b97de061cfd7c1014459ac9b55f9f416747",
   "distribution": "xcframework",
   "assets": {
-    "MelvadAdsCore.xcframework.zip": "0cb9df1deae68694430149151b7db032415047b5422242781877042d60a3efc0",
-    "MelvadAdsRuntime.xcframework.zip": "2ba4098c1f010197f6714cde5e386a3151fa00f024a6e76e8d2ef8370fa87b1a",
-    "PrebidMobile.xcframework.zip": "21c8206d8438e2b672358b5d55cb95d75516b9a08ed85874ef65a0fea5bbec5f",
-    "OMSDK_Prebidorg.xcframework.zip": "252fa4d97e2ac57355333ca00e19778df55f8a0fd6ae77b6403780cb77fd0dd9",
-    "MelvadAdsSDK-1.0.0.zip": "b7ba596a5839c5ab749e01cd46ac8414a354c6bad2bf38be26a0fb45d129cf59"
+    "MelvadAdsCore.xcframework.zip": "976ab5cf2b399b55d9cab6d1dd980478ad7fc52763d6685fda646841b1c3e643",
+    "MelvadAdsRuntime.xcframework.zip": "17fabc6913b858b3b461ca88f14fc5d39d370889b39eb5513c20efd477f5c290",
+    "PrebidMobile.xcframework.zip": "6bb07f233af877cf22f8202409f74d1121a0c9fb47939c68dab386cc9f231fba",
+    "OMSDK_Prebidorg.xcframework.zip": "f573774229b6087f6d29164e8a71889a29977d4e2f18d2289ab16585ed5a9b19",
+    "MelvadAdsSDK-1.0.1.zip": "26e2cd42880c01341fc1e668868ac40d744721ef282f2db66c2073bac876bc34"
   }
 }

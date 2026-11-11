@@ -1,11 +1,12 @@
 {
   "schema": 1,
   "files": {
-    "host.html": "e9e52c41e59c21d2f00b83a25ab1134629b056897f43661ec241b0c3738ebf1b",
+    "host.html": "3a1938a853b70df90f0deaf72dd61aed28e7b91b23e5c1e64b2f4094c428e64a",
     "show-host.html": "ce0ffcedb69a030e0d3e08edab18463a58b02964875b4ea3e3483600cd37ad24",
-    "bridge.js": "8c456e44e4afa23e8066adfa667fe65900c76d2b9dc75176df318895d770dfa0",
+    "bridge.js": "5a548691117a3d8bd82fd109d4ab0255d9ff7784b6cdbaadd89855e593457e5d",
     "show-bridge.js": "cb2f0071f2c94bb42da31c9238bdafb790b6c7b53afb3902e032984f52b32d2b",
-    "player.js": "52f118c02ecee80b0d62d5d48cf2da83c76421b0cca87e39e6c9281b8f3e204e",
+    "player.js": "cbaa113ce779b87ebea735ce2c6850834da6220b8b5a86b35ac5e0f11959ce6f",
+    "vendor/vpaid-optional.bbf78d4b6142900d.min.js": "bbf78d4b6142900dafee6404e2d2dd9c3fff1af97e73934af007bf1d742ab2d4",
     "show-sdk.js": "30236797e2821d32de2bcc91f57dd5a9b8ce550497f36642ff4686a7dfe60d38",
     "safeframe/html/r.html": "2514abbb6fce7388fc814db27e4439f8cefbd49a40a35b370d340eb04b244767",
     "safeframe/js/lib/base.js": "5f0a65aed592dc9e9561daabc84ac840f98be58f4d0e23c9eaa3f6ade395f1a7",

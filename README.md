@@ -12,7 +12,7 @@ In Xcode, select **File → Add Package Dependencies** and enter:
 https://github.com/Melvad/ios-ads-sdk
 ```
 
-Select **Exact Version: 1.0.0** and add both `MelvadAdsCore` and `MelvadAdsRuntime` to your app target.
+Select **Exact Version: 1.0.1** and add both `MelvadAdsCore` and `MelvadAdsRuntime` to your app target.
 
 ## Documentation
 
