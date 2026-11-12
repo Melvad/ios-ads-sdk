@@ -398,6 +398,11 @@ SWIFT_PROTOCOL("_TtP16MelvadAdsRuntime23MelvadAdSessionDelegate_")
 - (void)adSession:(MelvadAdSession * _Nonnull)session didFail:(NSError * _Nonnull)error;
 - (void)adSession:(MelvadAdSession * _Nonnull)session didReceiveEvent:(NSString * _Nonnull)event;
 - (void)adSession:(MelvadAdSession * _Nonnull)session didClick:(NSURL * _Nonnull)url;
+@optional
+/// Local completion of a rewarded attempt, once after impression and complete; not an SSV confirmation.
+- (void)adSessionDidEarnReward:(MelvadAdSession * _Nonnull)session;
+/// The ad actually closed. Explicit destroy does not send this callback.
+- (void)adSessionDidClose:(MelvadAdSession * _Nonnull)session;
 @end
 
 /// One content item: pre-roll, one mid-roll cue, and post-roll. Create a new instance for replay.
@@ -414,7 +419,7 @@ SWIFT_CLASS("_TtC16MelvadAdsRuntime23MelvadAdBreakController")
 @class UIView;
 @class UIViewController;
 @class NSNumber;
-/// Experimental publisher facade for the Melvad JS runtime. No reward is granted here.
+/// Publisher facade for the Melvad JS runtime. Earned reward is a local notification, not server credit.
 /// Load into a visible container while playback remains inactive, then call show().
 SWIFT_CLASS("_TtC16MelvadAdsRuntime15MelvadAdSession")
 @interface MelvadAdSession : NSObject
@@ -422,6 +427,8 @@ SWIFT_CLASS("_TtC16MelvadAdsRuntime15MelvadAdSession")
 @property (nonatomic, readonly) enum MelvadAdSessionState state;
 - (nullable instancetype)initWithSupplierURL:(NSURL * _Nonnull)supplierURL clientID:(int64_t)clientID bundleIdentifier:(NSString * _Nonnull)bundleIdentifier storeURL:(NSURL * _Nullable)storeURL userAgent:(NSString * _Nonnull)userAgent video:(BOOL)video error:(NSError * _Nullable * _Nullable)error;
 - (void)loadIn:(UIView * _Nonnull)container inventoryID:(NSString * _Nonnull)inventoryID placementID:(NSString * _Nonnull)placementID mode:(NSString * _Nullable)mode width:(NSInteger)width height:(NSInteger)height;
+/// Opt in to configured supplier SSV using an opaque publisher user reference.
+- (void)loadIn:(UIView * _Nonnull)container inventoryID:(NSString * _Nonnull)inventoryID placementID:(NSString * _Nonnull)placementID mode:(NSString * _Nullable)mode width:(NSInteger)width height:(NSInteger)height rewardUserID:(NSString * _Nonnull)rewardUserID;
 - (void)show;
 - (void)hide;
 - (BOOL)presentFrom:(UIViewController * _Nonnull)controller error:(NSError * _Nullable * _Nullable)error;
@@ -890,6 +897,11 @@ SWIFT_PROTOCOL("_TtP16MelvadAdsRuntime23MelvadAdSessionDelegate_")
 - (void)adSession:(MelvadAdSession * _Nonnull)session didFail:(NSError * _Nonnull)error;
 - (void)adSession:(MelvadAdSession * _Nonnull)session didReceiveEvent:(NSString * _Nonnull)event;
 - (void)adSession:(MelvadAdSession * _Nonnull)session didClick:(NSURL * _Nonnull)url;
+@optional
+/// Local completion of a rewarded attempt, once after impression and complete; not an SSV confirmation.
+- (void)adSessionDidEarnReward:(MelvadAdSession * _Nonnull)session;
+/// The ad actually closed. Explicit destroy does not send this callback.
+- (void)adSessionDidClose:(MelvadAdSession * _Nonnull)session;
 @end
 
 /// One content item: pre-roll, one mid-roll cue, and post-roll. Create a new instance for replay.
@@ -906,7 +918,7 @@ SWIFT_CLASS("_TtC16MelvadAdsRuntime23MelvadAdBreakController")
 @class UIView;
 @class UIViewController;
 @class NSNumber;
-/// Experimental publisher facade for the Melvad JS runtime. No reward is granted here.
+/// Publisher facade for the Melvad JS runtime. Earned reward is a local notification, not server credit.
 /// Load into a visible container while playback remains inactive, then call show().
 SWIFT_CLASS("_TtC16MelvadAdsRuntime15MelvadAdSession")
 @interface MelvadAdSession : NSObject
@@ -914,6 +926,8 @@ SWIFT_CLASS("_TtC16MelvadAdsRuntime15MelvadAdSession")
 @property (nonatomic, readonly) enum MelvadAdSessionState state;
 - (nullable instancetype)initWithSupplierURL:(NSURL * _Nonnull)supplierURL clientID:(int64_t)clientID bundleIdentifier:(NSString * _Nonnull)bundleIdentifier storeURL:(NSURL * _Nullable)storeURL userAgent:(NSString * _Nonnull)userAgent video:(BOOL)video error:(NSError * _Nullable * _Nullable)error;
 - (void)loadIn:(UIView * _Nonnull)container inventoryID:(NSString * _Nonnull)inventoryID placementID:(NSString * _Nonnull)placementID mode:(NSString * _Nullable)mode width:(NSInteger)width height:(NSInteger)height;
+/// Opt in to configured supplier SSV using an opaque publisher user reference.
+- (void)loadIn:(UIView * _Nonnull)container inventoryID:(NSString * _Nonnull)inventoryID placementID:(NSString * _Nonnull)placementID mode:(NSString * _Nullable)mode width:(NSInteger)width height:(NSInteger)height rewardUserID:(NSString * _Nonnull)rewardUserID;
 - (void)show;
 - (void)hide;
 - (BOOL)presentFrom:(UIViewController * _Nonnull)controller error:(NSError * _Nullable * _Nullable)error;

@@ -128,6 +128,8 @@ extension MelvadAdsRuntime::JSRendererError : Foundation::LocalizedError, Founda
   @objc @_Concurrency::MainActor func adSession(_ session: MelvadAdsRuntime::MelvadAdSession, didFail error: Foundation::NSError)
   @objc @_Concurrency::MainActor func adSession(_ session: MelvadAdsRuntime::MelvadAdSession, didReceiveEvent event: Swift::String)
   @objc @_Concurrency::MainActor func adSession(_ session: MelvadAdsRuntime::MelvadAdSession, didClick url: Foundation::URL)
+  @objc @_Concurrency::MainActor optional func adSessionDidEarnReward(_ session: MelvadAdsRuntime::MelvadAdSession)
+  @objc @_Concurrency::MainActor optional func adSessionDidClose(_ session: MelvadAdsRuntime::MelvadAdSession)
 }
 @objc @_Concurrency::MainActor final public class MelvadAdSession : ObjectiveC::NSObject {
   @objc @_Concurrency::MainActor weak final public var delegate: (any MelvadAdsRuntime::MelvadAdSessionDelegate)?
@@ -140,6 +142,7 @@ extension MelvadAdsRuntime::JSRendererError : Foundation::LocalizedError, Founda
   @_Concurrency::MainActor public init(configuration: MelvadAdsCore::SupplierConfiguration)
   @objc @_Concurrency::MainActor convenience public init(supplierURL: Foundation::URL, clientID: Swift::Int64, bundleIdentifier: Swift::String, storeURL: Foundation::URL?, userAgent: Swift::String, video: Swift::Bool) throws
   @objc @_Concurrency::MainActor final public func load(in container: UIKit::UIView, inventoryID: Swift::String, placementID: Swift::String, mode: Swift::String?, width: Swift::Int, height: Swift::Int)
+  @objc @_Concurrency::MainActor final public func load(in container: UIKit::UIView, inventoryID: Swift::String, placementID: Swift::String, mode: Swift::String?, width: Swift::Int, height: Swift::Int, rewardUserID: Swift::String)
   @objc @_Concurrency::MainActor final public func show()
   @objc @_Concurrency::MainActor final public func hide()
   @objc @_Concurrency::MainActor final public func present(from controller: UIKit::UIViewController) throws

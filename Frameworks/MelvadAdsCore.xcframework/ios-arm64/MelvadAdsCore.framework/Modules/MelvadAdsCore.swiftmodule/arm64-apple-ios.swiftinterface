@@ -92,7 +92,9 @@ public struct AdRequest : Swift::Equatable, Swift::Sendable {
   public let placementID: Swift::String
   public let viewport: MelvadAdsCore::AdSize
   public let mode: Swift::String?
+  public let rewardUserID: Swift::String?
   public init(inventoryID: Swift::String, placementID: Swift::String, viewport: MelvadAdsCore::AdSize, mode: Swift::String? = nil) throws
+  public init(inventoryID: Swift::String, placementID: Swift::String, viewport: MelvadAdsCore::AdSize, mode: Swift::String?, rewardUserID: Swift::String?) throws
   public static func == (a: MelvadAdsCore::AdRequest, b: MelvadAdsCore::AdRequest) -> Swift::Bool
 }
 public enum TrackingAuthorization : Swift::String, Swift::Sendable {
