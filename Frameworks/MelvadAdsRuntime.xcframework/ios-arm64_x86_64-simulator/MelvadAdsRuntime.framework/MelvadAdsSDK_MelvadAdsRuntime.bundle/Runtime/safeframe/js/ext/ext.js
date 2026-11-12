@@ -489,13 +489,12 @@ var NULL					= null,
 			org = evt.origin;
 		} catch (e) { }
 
-		dom.evtCncl(evt);
-
 		if (str && src && src == top) {
 			msg_params	= ParamHash(str,NULL,NULL,TRUE,TRUE);
 			msg_guid	= msg_params.guid;
 			msg_obj		= msg_params.msg;
 			if (guid == msg_guid && msg_obj && typeof msg_obj == OBJ) {
+				dom.evtCncl(evt);
 				try {
 					/** @ignore */
 					setTimeout(function()
@@ -590,10 +589,6 @@ var NULL					= null,
 			case ONUNLOAD:
 				unload_handlers.push(f);
 			break;
-			case MSG:
-			case ONMSG:
-				//noop
-			break;
 			default:
 				bDoDefault = TRUE;
 			break;
@@ -626,10 +621,6 @@ var NULL					= null,
 			case UNLOAD:
 			case ONUNLOAD:
 				handlers = unload_handlers;
-			break;
-			case MSG:
-			case ONMSG:
-				//noop
 			break;
 		}
 		if (handlers) {

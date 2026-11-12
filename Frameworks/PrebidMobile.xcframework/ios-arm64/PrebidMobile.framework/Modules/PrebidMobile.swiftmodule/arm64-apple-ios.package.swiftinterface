@@ -3,8 +3,6 @@
 // swift-module-flags: -target arm64-apple-ios15.0 -enable-objc-interop -enable-library-evolution -language-mode 5 -O -enable-experimental-feature DebugDescriptionMacro -module-name PrebidMobile -package-name prebidmobile
 // swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.4.2
 import AVFoundation
-import AdSupport
-import AppTrackingTransparency
 import CoreLocation
 import CoreTelephony
 import Foundation
@@ -1230,7 +1228,7 @@ extension UIKit::UIWindow {
   @objc deinit
 }
 public enum MelvadRequestIdentity {
-  public static func set(advertisingIdentifier: Swift::String?, vendorIdentifier: Swift::String?)
+  public static func set(advertisingIdentifier: Swift::String?, vendorIdentifier: Swift::String?, attStatus: Swift::UInt = 0)
 }
 @objc @_inheritsConvenienceInitializers @objcMembers public class PrebidServerConnection : ObjectiveC::NSObject, PrebidMobile::PrebidServerConnectionProtocol, Foundation::URLSessionDelegate {
   @objc public var userAgentService: PrebidMobile::UserAgentService {
@@ -1907,6 +1905,9 @@ extension PrebidMobile::Bid {
     get
   }
   @objc dynamic public var melvadLabAttributes: [Swift::Int] {
+    @objc get
+  }
+  @objc dynamic public var melvadSkAdImpression: StoreKit::SKAdImpression? {
     @objc get
   }
 }

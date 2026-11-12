@@ -441,6 +441,15 @@ typedef SWIFT_ENUM(NSInteger, MelvadAdSessionState, open) {
   MelvadAdSessionStateDestroyed = 6,
 };
 
+SWIFT_ENUM_FWD_DECL(NSInteger, MelvadSDKLogLevel)
+@class NSDictionary;
+/// Objective-C logging facade. Publisher callbacks are delivered on the main actor.
+SWIFT_CLASS("_TtC16MelvadAdsRuntime17MelvadDiagnostics")
+@interface MelvadDiagnostics : NSObject
++ (void)configureWithMinimumLevel:(enum MelvadSDKLogLevel)minimumLevel handler:(void (^ _Nullable)(NSDictionary * _Nonnull))handler;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
 @class NSCoder;
 @class NSBundle;
 /// Fullscreen presentation of an already prepared own-player creative.
@@ -457,6 +466,14 @@ SWIFT_CLASS("_TtC16MelvadAdsRuntime30MelvadFullscreenViewController")
 - (void)close;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
+
+typedef SWIFT_ENUM(NSInteger, MelvadSDKLogLevel, open) {
+  MelvadSDKLogLevelDebug = 0,
+  MelvadSDKLogLevelInfo = 1,
+  MelvadSDKLogLevelWarning = 2,
+  MelvadSDKLogLevelError = 3,
+  MelvadSDKLogLevelOff = 4,
+};
 
 typedef SWIFT_ENUM(NSInteger, MelvadVideoMode, open) {
   MelvadVideoModeInslide = 0,
@@ -916,6 +933,15 @@ typedef SWIFT_ENUM(NSInteger, MelvadAdSessionState, open) {
   MelvadAdSessionStateDestroyed = 6,
 };
 
+SWIFT_ENUM_FWD_DECL(NSInteger, MelvadSDKLogLevel)
+@class NSDictionary;
+/// Objective-C logging facade. Publisher callbacks are delivered on the main actor.
+SWIFT_CLASS("_TtC16MelvadAdsRuntime17MelvadDiagnostics")
+@interface MelvadDiagnostics : NSObject
++ (void)configureWithMinimumLevel:(enum MelvadSDKLogLevel)minimumLevel handler:(void (^ _Nullable)(NSDictionary * _Nonnull))handler;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
 @class NSCoder;
 @class NSBundle;
 /// Fullscreen presentation of an already prepared own-player creative.
@@ -932,6 +958,14 @@ SWIFT_CLASS("_TtC16MelvadAdsRuntime30MelvadFullscreenViewController")
 - (void)close;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
+
+typedef SWIFT_ENUM(NSInteger, MelvadSDKLogLevel, open) {
+  MelvadSDKLogLevelDebug = 0,
+  MelvadSDKLogLevelInfo = 1,
+  MelvadSDKLogLevelWarning = 2,
+  MelvadSDKLogLevelError = 3,
+  MelvadSDKLogLevelOff = 4,
+};
 
 typedef SWIFT_ENUM(NSInteger, MelvadVideoMode, open) {
   MelvadVideoModeInslide = 0,

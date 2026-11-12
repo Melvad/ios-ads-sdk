@@ -942,8 +942,10 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 @property (nonatomic, readonly, copy) NSArray<NSString *> * _Nonnull impressionTrackingURLs;
 @end
 
+@class SKAdImpression;
 @interface Bid (SWIFT_EXTENSION(PrebidMobile))
 @property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nonnull melvadLabAttributes;
+@property (nonatomic, readonly, strong) SKAdImpression * _Nullable melvadSkAdImpression;
 @end
 
 /// Contains information about bid.
@@ -5178,8 +5180,10 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 @property (nonatomic, readonly, copy) NSArray<NSString *> * _Nonnull impressionTrackingURLs;
 @end
 
+@class SKAdImpression;
 @interface Bid (SWIFT_EXTENSION(PrebidMobile))
 @property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nonnull melvadLabAttributes;
+@property (nonatomic, readonly, strong) SKAdImpression * _Nullable melvadSkAdImpression;
 @end
 
 /// Contains information about bid.

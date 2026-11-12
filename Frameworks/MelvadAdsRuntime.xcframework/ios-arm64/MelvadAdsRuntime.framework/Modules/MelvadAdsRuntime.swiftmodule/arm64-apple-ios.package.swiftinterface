@@ -8,7 +8,9 @@ import Foundation/*.Bundle*/
 import Foundation/*.ProcessInfo*/
 import Foundation/*.URL*/
 import MelvadAdsCore
+import OMSDK_Melvad
 import PrebidMobile
+import StoreKit
 import Swift
 import UIKit
 import WebKit
@@ -99,6 +101,20 @@ public enum JSRendererError : Swift::Error {
   @_Concurrency::MainActor @preconcurrency @objc final public func webView(_ webView: WebKit::WKWebView, didFail navigation: WebKit::WKNavigation!, withError error: any Swift::Error)
   @_Concurrency::MainActor @preconcurrency @objc final public func webViewWebContentProcessDidTerminate(_ webView: WebKit::WKWebView)
 }
+extension MelvadAdsRuntime::JSRendererError : Foundation::LocalizedError, Foundation::CustomNSError {
+  public static var errorDomain: Swift::String {
+    get
+  }
+  public var errorCode: Swift::Int {
+    get
+  }
+  public var errorDescription: Swift::String? {
+    get
+  }
+  public var errorUserInfo: [Swift::String : Any] {
+    get
+  }
+}
 @objc public enum MelvadAdSessionState : Swift::Int {
   case idle, loading, ready, showing, noFill, failed, destroyed
   public init?(rawValue: Swift::Int)
@@ -173,6 +189,19 @@ public enum JSRendererError : Swift::Error {
   @_Concurrency::MainActor final public func destroy()
   @objc deinit
 }
+@objc public enum MelvadSDKLogLevel : Swift::Int {
+  case debug, info, warning, error, off
+  public init?(rawValue: Swift::Int)
+  public typealias RawValue = Swift::Int
+  public var rawValue: Swift::Int {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency::MainActor @objcMembers final public class MelvadDiagnostics : ObjectiveC::NSObject {
+  @objc @_Concurrency::MainActor public static func configure(minimumLevel: MelvadAdsRuntime::MelvadSDKLogLevel, handler: ((Foundation::NSDictionary) -> Swift::Void)?)
+  @_Concurrency::MainActor @objc override dynamic public init()
+  @objc deinit
+}
 @objc @_hasMissingDesignatedInitializers @_Concurrency::MainActor final public class MelvadFullscreenViewController : UIKit::UIViewController {
   @_Concurrency::MainActor final public var onVideoCompleted: (() -> Swift::Void)?
   @_Concurrency::MainActor final public var onClose: (() -> Swift::Void)?
@@ -192,7 +221,7 @@ public struct NativePrebidConfiguration {
   public let configID: Swift::String
   public let size: MelvadAdsCore::AdSize
   public let storeURL: Foundation::URL?
-  public init(endpoint: Foundation::URL, accountID: Swift::String, configID: Swift::String, size: MelvadAdsCore::AdSize, allowLoopbackHTTP: Swift::Bool = false, supplierDecision: MelvadAdsCore::SupplierPrebidDecision? = nil, storeURL: Foundation::URL? = nil) throws
+  public init(endpoint: Foundation::URL, accountID: Swift::String, configID: Swift::String, size: MelvadAdsCore::AdSize, allowLoopbackHTTP: Swift::Bool = false, supplierDecision: MelvadAdsCore::SupplierPrebidDecision? = nil, storeURL: Foundation::URL? = nil, identityProvider: (any MelvadAdsCore::AdvertisingIdentityProvider)? = nil) throws
 }
 @_hasMissingDesignatedInitializers @_Concurrency::MainActor final public class NativePrebidDemand {
   @_Concurrency::MainActor public static func load(configuration: MelvadAdsRuntime::NativePrebidConfiguration, video: Swift::Bool = false, privacy: MelvadAdsCore::PrivacyContext = PrivacyContext()) async throws -> MelvadAdsRuntime::NativePrebidCreative?
@@ -213,6 +242,7 @@ public struct NativePrebidConfiguration {
   }
   @_Concurrency::MainActor final public func prepare(renderer: MelvadAdsRuntime::JSPreparedRenderer) async throws
   @_Concurrency::MainActor final public func recordImpression()
+  @_Concurrency::MainActor final public func endAttribution()
   @_Concurrency::MainActor final public func destroy()
   @objc deinit
 }
@@ -237,5 +267,9 @@ extension MelvadAdsRuntime::MelvadAdBreakController : Swift::Sendable {}
 extension MelvadAdsRuntime::MelvadAdBreakController.MelvadAdsRuntime::Position : Swift::Equatable {}
 extension MelvadAdsRuntime::MelvadAdBreakController.MelvadAdsRuntime::Position : Swift::Hashable {}
 extension MelvadAdsRuntime::MelvadAdBreakController.MelvadAdsRuntime::Position : Swift::RawRepresentable {}
+extension MelvadAdsRuntime::MelvadSDKLogLevel : Swift::Equatable {}
+extension MelvadAdsRuntime::MelvadSDKLogLevel : Swift::Hashable {}
+extension MelvadAdsRuntime::MelvadSDKLogLevel : Swift::RawRepresentable {}
+extension MelvadAdsRuntime::MelvadDiagnostics : Swift::Sendable {}
 extension MelvadAdsRuntime::NativePrebidDemand : Swift::Sendable {}
 extension MelvadAdsRuntime::NativePrebidCreative : Swift::Sendable {}

@@ -1,0 +1,20 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.4.2 effective-5.10 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)
+// swift-module-flags: -target arm64-apple-ios16.0 -enable-objc-interop -enable-library-evolution -language-mode 5 -O -enable-experimental-feature DebugDescriptionMacro -module-name MelvadAdsTracking -package-name source
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.4.2
+import AdSupport
+import AppTrackingTransparency
+import Foundation/*.Bundle*/
+import Foundation/*.ProcessInfo*/
+import Foundation/*.URL*/
+import MelvadAdsCore
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_Concurrency::MainActor final public class SystemAdvertisingIdentityProvider : MelvadAdsCore::AdvertisingIdentityProvider {
+  @_Concurrency::MainActor public init()
+  @_Concurrency::MainActor final public func snapshot(for privacy: MelvadAdsCore::PrivacyContext) -> MelvadAdsCore::PrivacyContext
+  @objc deinit
+}

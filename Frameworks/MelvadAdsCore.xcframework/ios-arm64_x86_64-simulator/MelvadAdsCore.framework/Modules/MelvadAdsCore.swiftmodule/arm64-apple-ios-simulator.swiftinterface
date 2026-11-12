@@ -2,14 +2,46 @@
 // swift-compiler-version: Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)
 // swift-module-flags: -target arm64-apple-ios16.0-simulator -enable-objc-interop -enable-library-evolution -language-mode 6 -O -enable-experimental-feature DebugDescriptionMacro -module-name MelvadAdsCore -package-name melvadadscore
 // swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.4.2
-import AdSupport
-import AppTrackingTransparency
 import Foundation
+import Foundation/*.Bundle*/
+import Foundation/*.ProcessInfo*/
+import Foundation/*.URL*/
 import Swift
-import UIKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
+extension MelvadAdsCore::AdError : Foundation::LocalizedError, Foundation::CustomNSError {
+  public static var errorDomain: Swift::String {
+    get
+  }
+  public var errorCode: Swift::Int {
+    get
+  }
+  public var errorDescription: Swift::String? {
+    get
+  }
+  public var errorUserInfo: [Swift::String : Any] {
+    get
+  }
+}
+public struct AdFailure : Swift::Error, Foundation::LocalizedError, Foundation::CustomNSError, @unchecked Swift::Sendable {
+  public let reason: MelvadAdsCore::AdError
+  public let endpoint: Foundation::URL?
+  public let underlyingError: Foundation::NSError?
+  public init(reason: MelvadAdsCore::AdError, url: Foundation::URL? = nil, underlyingError: (any Swift::Error)? = nil)
+  public static var errorDomain: Swift::String {
+    get
+  }
+  public var errorCode: Swift::Int {
+    get
+  }
+  public var errorDescription: Swift::String? {
+    get
+  }
+  public var errorUserInfo: [Swift::String : Any] {
+    get
+  }
+}
 public enum AdLoadState : Swift::Equatable, Swift::Sendable {
   case idle, loading, ready, noFill, cancelled, consumed, expired, destroyed
   case failed(MelvadAdsCore::AdError)
@@ -20,6 +52,9 @@ public enum AdLoadState : Swift::Equatable, Swift::Sendable {
     get
   }
   @_Concurrency::MainActor final public var onStateChange: (@_Concurrency::MainActor @Sendable (MelvadAdsCore::AdLoadState) -> Swift::Void)?
+  @_Concurrency::MainActor final public var failureError: Foundation::NSError? {
+    get
+  }
   @_Concurrency::MainActor convenience public init(service: any MelvadAdsCore::AdServing, privacy: MelvadAdsCore::PrivacyContext = PrivacyContext())
   @_Concurrency::MainActor final public var isReady: Swift::Bool {
     get
@@ -77,7 +112,16 @@ public struct PrivacyContext : Swift::Equatable, Swift::Sendable {
   public var advertisingIdentifier: Foundation::UUID?
   public var vendorIdentifier: Foundation::UUID?
   public init(trackingAuthorization: MelvadAdsCore::TrackingAuthorization = .notDetermined, personalizationAllowed: Swift::Bool = false, gdprApplies: Swift::Bool? = nil, consentString: Swift::String? = nil, globalPrivacyControl: Swift::Bool = false, advertisingIdentifier: Foundation::UUID? = nil, vendorIdentifier: Foundation::UUID? = nil)
+  public var allowsAdvertisingIdentifiers: Swift::Bool {
+    get
+  }
+  public var withoutIdentifiers: MelvadAdsCore::PrivacyContext {
+    get
+  }
   public static func == (a: MelvadAdsCore::PrivacyContext, b: MelvadAdsCore::PrivacyContext) -> Swift::Bool
+}
+public protocol AdvertisingIdentityProvider : Swift::Sendable {
+  @_Concurrency::MainActor func snapshot(for privacy: MelvadAdsCore::PrivacyContext) -> MelvadAdsCore::PrivacyContext
 }
 public enum AdSource : Swift::String, Swift::Sendable {
   case demand, passback
@@ -145,6 +189,26 @@ public enum RequestIdentity : Swift::Equatable, Swift::Sendable {
   @_Concurrency::MainActor public static func current(privacy: MelvadAdsCore::PrivacyContext) -> MelvadAdsCore::RequestIdentity
   public static func == (a: MelvadAdsCore::RequestIdentity, b: MelvadAdsCore::RequestIdentity) -> Swift::Bool
 }
+public enum MelvadLogLevel : Swift::Int, Swift::Sendable {
+  case debug, info, warning, error, off
+  public init?(rawValue: Swift::Int)
+  public typealias RawValue = Swift::Int
+  public var rawValue: Swift::Int {
+    get
+  }
+}
+public struct MelvadLogEntry : Swift::Sendable {
+  public let date: Foundation::Date
+  public let level: MelvadAdsCore::MelvadLogLevel
+  public let subsystem: Swift::String
+  public let message: Swift::String
+  public let requestID: Foundation::UUID?
+}
+public enum MelvadLogger {
+  public typealias Handler = @Sendable (MelvadAdsCore::MelvadLogEntry) -> Swift::Void
+  public static func configure(minimumLevel: MelvadAdsCore::MelvadLogLevel = .off, handler: MelvadAdsCore::MelvadLogger.MelvadAdsCore::Handler? = nil)
+  public static func record(_ level: MelvadAdsCore::MelvadLogLevel, subsystem: Swift::String, message: Swift::String, requestID: Foundation::UUID? = nil)
+}
 public struct SupplierClient : MelvadAdsCore::AdServing {
   public init(configuration: MelvadAdsCore::SupplierConfiguration)
   public func load(_ request: MelvadAdsCore::AdRequest, privacy: MelvadAdsCore::PrivacyContext) async throws -> MelvadAdsCore::AdLoadResult
@@ -168,7 +232,9 @@ public struct SupplierConfiguration : Swift::Sendable {
   public let userAgent: Swift::String
   public let language: Swift::String?
   public let timeout: Foundation::TimeInterval
-  public init(baseURL: Foundation::URL = SupplierConfiguration.productionBaseURL, clientID: Swift::Int64, bundleID: Swift::String, storeURL: Foundation::URL? = nil, userAgent: Swift::String, language: Swift::String? = nil, timeout: Foundation::TimeInterval = 8, allowLoopbackHTTP: Swift::Bool = false, route: MelvadAdsCore::SupplierConfiguration.MelvadAdsCore::Route = .display) throws
+  public let identityProvider: (any MelvadAdsCore::AdvertisingIdentityProvider)?
+  public init(baseURL: Foundation::URL = SupplierConfiguration.productionBaseURL, clientID: Swift::Int64, bundleID: Swift::String, storeURL: Foundation::URL? = nil, userAgent: Swift::String, language: Swift::String? = nil, timeout: Foundation::TimeInterval = 8, allowLoopbackHTTP: Swift::Bool = false, route: MelvadAdsCore::SupplierConfiguration.MelvadAdsCore::Route = .display, identityProvider: (any MelvadAdsCore::AdvertisingIdentityProvider)? = nil) throws
+  @_Concurrency::MainActor public func requestPrivacy(_ privacy: MelvadAdsCore::PrivacyContext) -> MelvadAdsCore::PrivacyContext
 }
 public enum SupplierDecision : Swift::Sendable {
   case noFill
@@ -220,6 +286,9 @@ extension MelvadAdsCore::TrackingAuthorization : Swift::RawRepresentable {}
 extension MelvadAdsCore::AdSource : Swift::Equatable {}
 extension MelvadAdsCore::AdSource : Swift::Hashable {}
 extension MelvadAdsCore::AdSource : Swift::RawRepresentable {}
+extension MelvadAdsCore::MelvadLogLevel : Swift::Equatable {}
+extension MelvadAdsCore::MelvadLogLevel : Swift::Hashable {}
+extension MelvadAdsCore::MelvadLogLevel : Swift::RawRepresentable {}
 extension MelvadAdsCore::SupplierConfiguration.MelvadAdsCore::Route : Swift::Equatable {}
 extension MelvadAdsCore::SupplierConfiguration.MelvadAdsCore::Route : Swift::Hashable {}
 extension MelvadAdsCore::SupplierConfiguration.MelvadAdsCore::Route : Swift::RawRepresentable {}

@@ -1,0 +1,4 @@
+framework module MelvadAdsTracking {
+    header "MelvadAdsTracking-Swift.h"
+    requires objc
+}
