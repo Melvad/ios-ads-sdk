@@ -1,2 +1,4 @@
 * text=auto
 Frameworks/** binary
+# Binary distribution: generated headers do not measure implementation languages.
+* linguist-detectable=false

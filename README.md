@@ -4,6 +4,22 @@ Binary distribution of the Melvad SDK for iOS 16+. Requires Xcode with Swift 6 s
 
 Prebuilt XCFrameworks are included in [Frameworks](Frameworks).
 
+## Implementation languages
+
+| Component | Languages |
+| --- | --- |
+| Native Melvad iOS SDK (Core, Runtime and Tracking) | Swift |
+| Web renderers | TypeScript and JavaScript; shipped as JavaScript |
+
+The SDK supports Swift and Objective-C applications. The `*-Swift.h` files are
+Objective-C compatibility headers generated from Swift; bundled Prebid and OMID
+frameworks also expose native headers. These headers do not describe the language
+composition of the SDK implementation.
+
+GitHub language statistics are disabled for this binary repository: compiled Swift
+is not counted, while generated headers and runtime assets are. No source-language
+percentages are claimed for the binary distribution.
+
 ## Installation
 
 In Xcode, select **File → Add Package Dependencies** and enter:
