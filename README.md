@@ -16,9 +16,10 @@ Objective-C compatibility headers generated from Swift; bundled Prebid and OMID
 frameworks also expose native headers. These headers do not describe the language
 composition of the SDK implementation.
 
-GitHub language statistics are disabled for this binary repository: compiled Swift
-is not counted, while generated headers and runtime assets are. No source-language
-percentages are claimed for the binary distribution.
+The GitHub language indicator describes the [Swift integration example](Examples/).
+Compiled frameworks, generated headers and bundled web assets are excluded from
+that chart. Its percentages describe the public example code, not the private
+SDK implementation.
 
 ## Installation
 

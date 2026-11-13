@@ -1,4 +1,6 @@
 * text=auto
 Frameworks/** binary
-# Binary distribution: generated headers do not measure implementation languages.
-* linguist-detectable=false
+# Count integration examples, excluding binary framework interfaces and resources.
+Frameworks/** linguist-vendored=true
+Package.swift linguist-detectable=false
+Examples/*.swift linguist-detectable=true -linguist-documentation -linguist-vendored -linguist-generated
